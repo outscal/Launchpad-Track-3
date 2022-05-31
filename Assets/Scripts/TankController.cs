@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Cinemachine;
 
 public class TankController
 {
@@ -8,16 +9,20 @@ public class TankController
 
     private Rigidbody rb;
 
-    public TankController(TankModel _tankModel, TankView _tankView)
+    private CameraController virtualCam;
+
+    public TankController(TankModel _tankModel, TankView _tankView, CameraController cam)
     {
         tankModel = _tankModel;
         tankView = GameObject.Instantiate<TankView>(_tankView);
         rb = tankView.GetRigidbody();
+        virtualCam = cam;
 
         tankModel.SetTankController(this);
         tankView.SetTankController(this);
 
         tankView.ChangeColor(tankModel.color);
+        virtualCam.SetPlayer(tankView.transform);
     }
 
     public void Move(float movement)
@@ -39,6 +44,7 @@ public class TankController
 	internal void Fire()
 	{
         ShellScript newShell = GameObject.Instantiate<ShellScript>(tankModel.shellPrefab);
-        newShell.SetShellProperties(tankView.firePoint);
+        newShell.SetShellProperties(tankView.firePoint,virtualCam);
+        virtualCam.CameraShake();
 	}
 }

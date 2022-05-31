@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using UnityEngine;
 
 public class TankController
@@ -14,21 +14,19 @@ public class TankController
         tankView = GameObject.Instantiate<TankView>(_tankView);
         rb = tankView.GetRigidbody();
 
-
         tankModel.SetTankController(this);
         tankView.SetTankController(this);
 
         tankView.ChangeColor(tankModel.color);
-
     }
 
-    public void Move(float movement, float movementSpeed)
+    public void Move(float movement)
     {
-        rb.velocity = tankView.transform.forward * movement * movementSpeed;
+        rb.velocity = tankView.transform.forward * movement * tankModel.movementSpeed;
     }
-    public void Rotate(float rotate, float rotateSpeed)
+    public void Rotate(float rotate)
     {
-        Vector3 vector = new Vector3(0f, rotate * rotateSpeed, 0f);
+        Vector3 vector = new Vector3(0f, rotate * tankModel.rotationSpeed, 0f);
         Quaternion deltaRotation = Quaternion.Euler(vector * Time.deltaTime);
         rb.MoveRotation(rb.rotation * deltaRotation);
     }
@@ -38,4 +36,9 @@ public class TankController
         return tankModel;
     }
 
+	internal void Fire()
+	{
+        ShellScript newShell = GameObject.Instantiate<ShellScript>(tankModel.shellPrefab);
+        newShell.SetShellProperties(tankView.firePoint);
+	}
 }

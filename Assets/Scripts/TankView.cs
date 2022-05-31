@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,10 @@ public class TankView : MonoBehaviour
 {
 
     private TankController tankController;
-    private float movement;
-    private float rotation;
+    private float movementInput;
+    private float rotationInput;
 
+    public Transform firePoint;
     public Rigidbody rb;
     public MeshRenderer[] childs;
 
@@ -24,31 +26,32 @@ public class TankView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        GetInput();
 
-        if (movement != 0)
-            tankController.Move(movement, tankController.GetTankModel().movementSpeed);
+        if (movementInput != 0)
+            tankController.Move(movementInput);
 
-        if (rotation != 0)
-            tankController.Rotate(rotation, tankController.GetTankModel().rotationSpeed);
+        if (rotationInput != 0)
+            tankController.Rotate(rotationInput);
 
+        CheckFiring();
     }
 
-    private void Movement()
+	private void CheckFiring()
+	{
+        if (Input.GetMouseButtonDown(0))
+            tankController.Fire();
+	}
+
+	private void GetInput()
     {
-        movement = Input.GetAxis("Vertical");
-        rotation = Input.GetAxis("Horizontal");
+        movementInput = Input.GetAxis("Vertical");
+        rotationInput = Input.GetAxis("Horizontal");
     }
 
-    public void SetTankController(TankController _tankController)
-    {
-        tankController = _tankController;
-    }
+    public void SetTankController(TankController _tankController) => tankController = _tankController;
 
-    public Rigidbody GetRigidbody()
-    {
-        return rb;
-    }
+    public Rigidbody GetRigidbody() => rb;
 
     public void ChangeColor(Material color)
     {

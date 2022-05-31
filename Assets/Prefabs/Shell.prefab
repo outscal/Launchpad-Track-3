@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3574598564293617675}
   - component: {fileID: 3574598564294420523}
   - component: {fileID: 3574598564295387883}
+  - component: {fileID: 85779080}
+  - component: {fileID: 85779081}
+  - component: {fileID: 85779079}
   m_Layer: 0
   m_Name: Shell
   m_TagString: Untagged
@@ -84,6 +87,56 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &85779080
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574598564293129259}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &85779081
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574598564293129259}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.13
+  m_Height: 0.54
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.000000007450581, z: 0.19800001}
+--- !u!114 &85779079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574598564293129259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ab378fb281b1e4b9998e1a79f1f1c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 3172979089166124806}
+  shellBody: {fileID: 85779080}
+  shellMesh: {fileID: 3574598564295387883}
+  shellCollider: {fileID: 85779081}
+  maxVelocity: 10
+  shellLifeTime: 5
+  explosionRadius: 5
+  explosionForce: 1000
 --- !u!1001 &3172979089146608144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,6 +197,12 @@ PrefabInstance:
 --- !u!4 &3172979089146648410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 486730, guid: a8efdf6a53b9cc9448e1e2514b573497,
+    type: 3}
+  m_PrefabInstance: {fileID: 3172979089146608144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3172979089166124806 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19807510, guid: a8efdf6a53b9cc9448e1e2514b573497,
     type: 3}
   m_PrefabInstance: {fileID: 3172979089146608144}
   m_PrefabAsset: {fileID: 0}

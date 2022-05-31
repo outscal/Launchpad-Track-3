@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 5332725606795677044}
   - component: {fileID: 6847243632122636527}
   - component: {fileID: 4789718319690767839}
-  - component: {fileID: 3249302085596625283}
+  - component: {fileID: 6065405041766291297}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f7492a3eba84e498ddcada2379db2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint: {fileID: 2125826621696834911}
   rb: {fileID: 4789718319690767839}
   childs:
   - {fileID: 5332725606793252836}
@@ -237,9 +238,9 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
---- !u!65 &3249302085596625283
+--- !u!65 &6065405041766291297
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,8 +251,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5713997, y: 1.9171866, z: 2.1207948}
-  m_Center: {x: 0.0034499168, y: 0.9319615, z: -0.006413281}
+  m_Size: {x: 1.57, y: 1.91, z: 2.1}
+  m_Center: {x: 0, y: 0.93, z: 0}
 --- !u!1 &5332725606795186326
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +402,8 @@ Transform:
   m_LocalPosition: {x: 0.000010554959, y: 1.0796412, z: -0.025321364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2125826621696834911}
   m_Father: {fileID: 5332725606795677048}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -456,6 +458,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8942975009524378290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2125826621696834911}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2125826621696834911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942975009524378290}
+  m_LocalRotation: {x: -0.15039806, y: 0, z: 0, w: 0.9886255}
+  m_LocalPosition: {x: 0, y: 0.614, z: 1.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5332725606795677052}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -17.3, y: 0, z: 0}
 --- !u!1001 &3301660818430806891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -538,21 +571,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5332725606795677044}
     m_Modifications:
-    - target: {fileID: 2574079241890767957, guid: 52c3be7d2cba98048961ce50cd39c73a,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.51174796
-      objectReference: {fileID: 0}
-    - target: {fileID: 2574079241890767957, guid: 52c3be7d2cba98048961ce50cd39c73a,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.7286675
-      objectReference: {fileID: 0}
-    - target: {fileID: 2574079241890767957, guid: 52c3be7d2cba98048961ce50cd39c73a,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.8679245
-      objectReference: {fileID: 0}
     - target: {fileID: 4403844528855879914, guid: 52c3be7d2cba98048961ce50cd39c73a,
         type: 3}
       propertyPath: m_Name

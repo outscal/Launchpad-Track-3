@@ -2,9 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+	public GameObject startPanel;
+
+	public GameObject endPanel;
+	public TextMeshProUGUI finalScoreText;
+
+	public GameObject scorePanel;
+	public TextMeshProUGUI scoreText;
+	public TextMeshProUGUI TimerText;
+
+	public GameManager gameManager;
+
 	[Header("Spawner")]
     public TankSpawner spawnner;
 
@@ -18,6 +31,9 @@ public class MenuController : MonoBehaviour
 	private void Start()
 	{
 		selectedType = TankTypes.GreenTank;
+		startPanel.SetActive(true);
+		endPanel.SetActive(false);
+		scorePanel.SetActive(false);
 	}
 
 	private void Update()
@@ -51,6 +67,31 @@ public class MenuController : MonoBehaviour
 	{
 		spawnner.CreateTank(selectedType);
 		MenuTank.gameObject.SetActive(false);
-		gameObject.SetActive(false);
+		startPanel.SetActive(false);
+		scorePanel.SetActive(true);
+
+		gameManager.StartGame();
+	}
+
+	public void EndGame(int score)
+	{
+		endPanel.SetActive(true);
+		scorePanel.SetActive(false);
+		finalScoreText.text = "Target Destroyed : " + score;
+	}
+
+	public void RestartGame()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	public void UpdateScore(int value)
+	{
+		scoreText.text = "Target Destroyed : " + value;
+	}
+
+	public void UpdateTimer(float value)
+	{
+		TimerText.text = "Time Left: " + (int)value;
 	}
 }

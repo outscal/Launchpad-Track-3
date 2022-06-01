@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetScript : MonoBehaviour
 {
 	public List<Transform> targetPoints;
+	public GameManager gameManager;
 
 	public void ChangePosition()
 	{
@@ -13,5 +14,7 @@ public class TargetScript : MonoBehaviour
 			targetPoints[index].position.x,
 			transform.position.y,
 			targetPoints[index].position.z);
+
+		gameManager.IncreaseScore(1);
 	}
 }

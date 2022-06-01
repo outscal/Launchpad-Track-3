@@ -13,7 +13,7 @@ public class ShellScript : MonoBehaviour
 
 	public float maxVelocity = 5f;
 	public float shellLifeTime = 5f;
-	public float explosionRadius = 5f;
+	public float explosionRadius = 2f;
 	public float explosionForce = 1000f;
 
 	private bool exploded = false;
@@ -41,8 +41,29 @@ public class ShellScript : MonoBehaviour
 		if (exploded)
 			return;
 		exploded = true;
-		SetShellActive(false); ;
+		SetShellActive(false); 
+		CheckInRadius();
 		SetOffExplosion();
+	}
+
+	private void CheckInRadius()
+	{
+		Collider[] cols = Physics.OverlapSphere(transform.position, explosionRadius);
+		foreach(Collider col in cols)
+		{
+			TankView tank = col.GetComponent<TankView>();
+			if(tank != null)
+			{
+				tank.GetRigidbody().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+				continue;
+			}
+
+			TargetScript target = col.GetComponent<TargetScript>();
+			if(target != null)
+			{
+				target.ChangePosition();
+			}
+		}
 	}
 
 	private void SetShellActive(bool active)

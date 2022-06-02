@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 	public void IncreaseScore(int value)
 	{
 		score += value;
+		gameTimer -= 5;
 		menu.UpdateScore(score);
 	}
 

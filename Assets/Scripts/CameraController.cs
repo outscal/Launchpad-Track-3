@@ -7,7 +7,7 @@ using System;
 public class CameraController : MonoBehaviour
 {
 	public CinemachineVirtualCamera virtualCamera;
-	CinemachineBasicMultiChannelPerlin noise;
+	private CinemachineBasicMultiChannelPerlin noise;
 
 	public void SetPlayer(Transform player)
 	{

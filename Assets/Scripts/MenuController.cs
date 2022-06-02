@@ -94,4 +94,9 @@ public class MenuController : MonoBehaviour
 	{
 		TimerText.text = "Time Left: " + (int)value;
 	}
+
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 }

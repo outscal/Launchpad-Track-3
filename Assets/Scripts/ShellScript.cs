@@ -17,6 +17,9 @@ public class ShellScript : MonoBehaviour
 	public float explosionForce = 1000f;
 
 	private bool exploded = false;
+	public AudioClip shootingClip;
+	public AudioClip explosionClip;
+	public AudioSource source;
 	private CameraController cam;
 
 	private void Start()
@@ -26,6 +29,7 @@ public class ShellScript : MonoBehaviour
 
 	public void SetShellProperties(Transform exitPoint,CameraController _cam)
 	{
+		SetShootingAudio();
 		cam = _cam;
 		SetShellActive(true);
 		transform.SetPositionAndRotation(exitPoint.position, exitPoint.rotation);
@@ -34,6 +38,12 @@ public class ShellScript : MonoBehaviour
 		// it'll still explode after lifetime
 		exploded = false;
 		Invoke(nameof(Explode), shellLifeTime);
+	}
+
+	private void SetShootingAudio()
+	{
+		source.clip = shootingClip;
+		source.Play();
 	}
 
 	private void Explode()
@@ -78,6 +88,8 @@ public class ShellScript : MonoBehaviour
 		cam.CameraShake();
 		explosion.transform.SetPositionAndRotation(transform.position, Quaternion.Euler(-90, 0, 0));
 		explosion.Play();
+		source.clip = explosionClip;
+		source.Play();
 		Destroy(gameObject, explosion.main.duration);
 	}
 

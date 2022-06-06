@@ -15,9 +15,14 @@ public class TankView : MonoBehaviour
     public Rigidbody rb;
     public MeshRenderer[] childs;
 
+    public AudioClip driving;
+    public AudioClip idle;
+    public AudioSource source;
+
     // Start is called before the first frame update
     void Start()
     {
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,8 +35,22 @@ public class TankView : MonoBehaviour
 
         if (rotationInput != 0)
             tankController.Rotate(rotationInput);
-
+        PlayMovementAudio();
         CheckFiring();
+    }
+
+	private void PlayMovementAudio()
+	{
+        if (rb.velocity != Vector3.zero && source.clip != driving)
+        {
+            source.clip = driving;
+            source.Play();
+        }
+        else if(rb.velocity == Vector3.zero && source.clip != idle)
+		{
+            source.clip = idle;
+            source.Play();
+        }
     }
 
 	private void CheckFiring()
